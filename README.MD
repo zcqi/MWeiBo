@@ -8,7 +8,8 @@
 * 发表微博
 * 发表评论
 * 搜索用户
-* 由于新浪api的各种限制，有些功能没有实现，比如关注用户，查看用户资料等等；
+* 由于新浪api的各种限制，有些功能没有实现，比如关注用户，查看用户资料等等
+
 ## 运行效果
 ![screenshot](http://ww2.sinaimg.cn/mw690/6a9d6455jw1eva1h94tvbj20a00hsgno.jpg)
 ![screenshot](http://ww3.sinaimg.cn/mw690/6a9d6455jw1eva1h9vzakj20a00hstau.jpg)
