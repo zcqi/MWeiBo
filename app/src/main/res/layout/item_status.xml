@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="status"
+            type="com.example.zhangzhao.mweibo.model.Status" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/avatar"
+                    android:text="@{status.user.screen_name}"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/avatar"
+                    android:layout_alignLeft="@+id/name"
+                    android:layout_below="@+id/name"
+                    android:gravity="bottom"
+                    android:text="@{status.created_at}"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@{status.text}"
+                android:textSize="15sp"
+                android:autoLink="web"/>
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:visibility="@{status.pic_urls.size()==1 ? View.VISIBLE : View.GONE}" />
+            -
+
+            <GridLayout
+                android:id="@+id/weiboimage_muti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="5dp"
+                android:clickable="false"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:rowCount="3"
+                android:useDefaultMargins="false"
+                android:visibility="@{status.pic_urls.size()>1 ? View.VISIBLE : View.GONE}">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                     />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                   />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{status.pic_urls.size()>=3 ? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{status.pic_urls.size()>=4 ? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{status.pic_urls.size()>=5 ? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{status.pic_urls.size()>=6 ? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{status.pic_urls.size()>=7 ? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{status.pic_urls.size()>=8 ? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="@{status.pic_urls.size()==9 ? View.VISIBLE : View.GONE}" />
+
+            </GridLayout>
+        <LinearLayout
+            android:id="@+id/buttonPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <Button
+                android:id="@+id/btn_comment"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:text="@{String.valueOf(status.comments_count)}" />
+
+            <Button
+                android:id="@+id/btn_repost"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:text="@{String.valueOf(status.reposts_count)}" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
