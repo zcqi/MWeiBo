@@ -1,4 +1,4 @@
-# 新浪微博android客户端（demo）,材料设计风格。
+# 新浪微博android客户端(demo)
 用来练习开发技术,使用[databinding](http://segmentfault.com/a/1190000002876984),[Rxjava](https://github.com/ReactiveX/RxJava/wiki)和Lambda表达式。
 >图片加载：[glide](https://github.com/bumptech/glide)，网络：[retrofit](http://square.github.io/retrofit/)，依赖注入：[dagger](http://square.github.io/dagger/)
 
