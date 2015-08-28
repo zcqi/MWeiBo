@@ -25,4 +25,5 @@ public class MWeiBoService {
 
         return restAdapter.create(UserService.class);
     }
+
 }

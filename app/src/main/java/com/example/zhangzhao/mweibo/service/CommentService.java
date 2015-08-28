@@ -11,15 +11,14 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Query;
+import rx.Observable;
 
 /**
  * Created by zhangzhao on 2015/8/10.
  */
 public interface CommentService {
-    @GET(Constants.URL_COMMENT_FRAG)
-    void getCommentsToMe(@Query("access_token") String token,@Query("page") int page, Callback<CommentsWrapper> callback);
     @GET(Constants.URL_STATUS_FRAG)
-    void getCommentsShow(@Query("access_token") String token, @Query("id") long id,Callback<CommentsWrapper> callback);
+    Observable<CommentsWrapper> getCommentsShow(@Query("id") long id);
     @FormUrlEncoded
     @POST(Constants.URL_NEW_COMMENT_ACTIVITY)
     void postComment(@Field("access_token") String token, @Field("comment") String text,@Field("id") long id,Callback<Comment> callback);

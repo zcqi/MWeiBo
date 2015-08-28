@@ -4,24 +4,16 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.SearchView;
 
-import com.example.zhangzhao.mweibo.R;
-import com.example.zhangzhao.mweibo.ui.activity.SearchResultsActivity;
-import com.example.zhangzhao.mweibo.ui.fragment.CommentFragment;
 import com.example.zhangzhao.mweibo.ui.fragment.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,10 +37,6 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.drawer_tab1:
                                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, new MainFragment()).commit();
                                 break;
-                            case R.id.drawer_tab3:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, new CommentFragment()).commit();
-                                break;
-
                         }
                         menuItem.setChecked(true);
                         drawerLayout.closeDrawers();
@@ -69,12 +57,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(new ComponentName(getApplicationContext(), SearchResultsActivity.class)));
 
         return true;
     }

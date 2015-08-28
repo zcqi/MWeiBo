@@ -1,19 +1,11 @@
 package com.example.zhangzhao.mweibo;
 
-import android.accounts.AccountManager;
 import android.content.Context;
 
-import com.example.zhangzhao.mweibo.authenticator.ApiKeyProvider;
 import com.example.zhangzhao.mweibo.service.MWeiBoService;
-import com.example.zhangzhao.mweibo.ui.activity.NewCommentActivity;
 import com.example.zhangzhao.mweibo.ui.activity.NewStatusActivity;
-import com.example.zhangzhao.mweibo.ui.activity.SearchResultsActivity;
-import com.example.zhangzhao.mweibo.ui.activity.UserActivity;
-import com.example.zhangzhao.mweibo.ui.fragment.CommentFragment;
 import com.example.zhangzhao.mweibo.ui.fragment.MainFragment;
 import com.example.zhangzhao.mweibo.ui.fragment.StatusFragment;
-import com.example.zhangzhao.mweibo.ui.fragment.UserPhotosFragment;
-import com.example.zhangzhao.mweibo.ui.fragment.UserTimelineFragment;
 
 import javax.inject.Singleton;
 
@@ -25,7 +17,9 @@ import retrofit.RestAdapter;
  * Created by zhangzhao on 2015/8/11.
  */
 @Module(
-        injects = {MainFragment.class, StatusFragment.class, NewStatusActivity.class, UserActivity.class, UserTimelineFragment.class, SearchResultsActivity.class, CommentFragment.class, NewCommentActivity.class}
+        injects = {MainFragment.class, StatusFragment.class, NewStatusActivity.class,
+                RestAdapterRequestInterceptor.class
+        }
 )
 public class MWeiBoModule {
     @Provides
@@ -34,16 +28,10 @@ public class MWeiBoModule {
     }
 
     @Provides
-    RestAdapter provideRestAdapter() {
-        return new RestAdapter.Builder().setEndpoint(Constants.URL_BASE).build();
+    RestAdapter provideRestAdapter(RestErrorHandler restErrorHandler, RestAdapterRequestInterceptor restRequestInterceptor) {
+        return new RestAdapter.Builder().setEndpoint(Constants.URL_BASE).setErrorHandler(restErrorHandler).setRequestInterceptor(restRequestInterceptor).build();
 
     }
-
-    @Provides
-    ApiKeyProvider provideApiKeyProvider(AccountManager accountManager) {
-        return new ApiKeyProvider(accountManager);
-    }
-
     @Provides
     @Singleton
     Context provideAppContext() {
@@ -51,7 +39,11 @@ public class MWeiBoModule {
     }
 
     @Provides
-    AccountManager provideAccountManager(final Context context) {
-        return AccountManager.get(context);
+    RestErrorHandler provideRestErrorHandler(){
+        return new RestErrorHandler();
+    }
+    @Provides
+    RestAdapterRequestInterceptor provideRestAdapterRequestInterceptor(Context appContext){
+        return new RestAdapterRequestInterceptor(appContext);
     }
 }

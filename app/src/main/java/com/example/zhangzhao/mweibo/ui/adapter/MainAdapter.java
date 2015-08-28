@@ -28,9 +28,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
 
     private List<Status> statuses;
     private Context context;
-    private MyItemClickListener iconListener;
     private MyItemClickListener imageListener;
-    private MyItemClickListener buttonListener;
     private MyItemClickListener itemListener;
 
     public interface MyItemClickListener {
@@ -58,17 +56,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
         this.itemListener = itemListener;
     }
 
-    public void setIconListener(MyItemClickListener iconListener) {
-        this.iconListener = iconListener;
-    }
+
 
     public void setImageListener(MyItemClickListener imageListener) {
         this.imageListener = imageListener;
     }
 
-    public void setButtonListener(MyItemClickListener buttonListener) {
-        this.buttonListener = buttonListener;
-    }
 
     @Override
     public void onBindViewHolder(MainAdapter.MyHolder holder, final int position) {
@@ -85,15 +78,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
             }
         }
 
-       holder.binding.avatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (iconListener != null) {
-                    iconListener.onItemClick(position);
-                }
-
-            }
-        });
         holder.binding.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,12 +88,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
             @Override
             public void onClick(View v) {
                 imageListener.onItemClick(position);
-            }
-        });
-        holder.binding.btnComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonListener.onItemClick(position);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {

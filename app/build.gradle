@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.android.databinding'
+apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
@@ -11,6 +12,11 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -44,6 +50,8 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.github.orangegangsters:swipy:1.2.0@aar'
     compile 'com.github.chrisbanes.photoview:library:1.2.+'
-    compile (group: 'com.tumblr', name: 'bookends', version: '1.0.0', ext: 'aar')
+    compile 'io.reactivex:rxjava:x.y.z'
+    compile 'io.reactivex:rxandroid:0.25.0'
+    compile(group: 'com.tumblr', name: 'bookends', version: '1.0.0', ext: 'aar')
 
 }

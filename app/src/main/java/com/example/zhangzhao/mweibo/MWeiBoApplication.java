@@ -15,8 +15,6 @@ public  class MWeiBoApplication extends Application {
     /**
      * Create main application
      */
-    public MWeiBoApplication() {
-    }
 
 
     @Override
